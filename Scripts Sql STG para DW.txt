@@ -1,0 +1,110 @@
+****Scripts para os estepes do PDI
+
+//dim_municipio
+SELECT
+  id_municipio
+, nm_municipio
+FROM dbo.stg_municipio
+
+
+
+//dim_plano
+SELECT
+  id_plano
+, vigencia_plano
+, upper(gr_contratacao) as gr_contratacao
+, cd_segmentacao
+, upper(tipo_segmentacao) as tipo_segmentacao
+, upper(gr_sgmt_assintencial) as gr_sgmt_assintencial
+, upper(cobertura) as cobertura
+, upper(tipo_financiamento) as tipo_financiamento
+, cd_abrangencia
+, upper(abrangencia_cobertura) as abrangencia_cobertura
+, upper(fator_moderador) as fator_moderador
+, lg_fator_moderador
+, upper(acomodacao) as acomodacao
+FROM dbo.stg_plano
+
+
+//dim_tab_23_carater_atendimento
+SELECT
+  id_termo
+, upper(termo) as termo
+, dt_ini_vigencia
+, dt_fim_vigencia
+, dt_fim_implantacao
+FROM dbo.stg_tab_23_carater_atendimento
+
+//dim_tab_36_indicador_acidente
+SELECT
+  id_termo
+, upper(termo) as termo
+, dt_ini_vigencia
+, dt_fim_vigencia
+, dt_fim_implantacao
+FROM dbo.stg_tab_36_indicador_acidente
+
+
+//dim_tab_39_motivo_encerramento_internacao
+SELECT
+  id_termo
+, upper(termo) as termo
+, dt_ini_vigencia
+, dt_fim_vigencia
+, dt_fim_implantacao
+FROM dbo.stg_tab_39_motivo_encerramento_internacao
+
+//dim_tab_41_regime_internacao
+SELECT
+  id_termo
+, upper(termo) as termo
+, dt_ini_vigencia
+, dt_fim_vigencia
+, dt_fim_implantacao
+FROM dbo.stg_tab_41_regime_internacao
+
+//dim_tab_57_tipo_internacao
+SELECT
+  id_termo
+, upper(termo) as termo
+, dt_ini_vigencia
+, dt_fim_vigencia
+, dt_fim_implantacao
+FROM dbo.stg_tab_57_tipo_internacao
+
+//dim_tab_cid_10
+SELECT
+  cid
+, descricao
+, descricao_abreviada
+FROM dbo.stg_tab_cid_10
+
+
+//ft_atendimentos_hospitalares_cons
+SELECT
+  id_evento_atencao_saude
+, id_plano
+, UPPER(faixa_etaria) AS faixa_etaria
+, UPPER(coalesce (sexo,'NÃO INDENTIFICADO')) AS sexo
+, cd_municipio_beneficiario
+, porte
+, cd_modalidade
+, nm_modalidade
+, cd_municipio_prestador
+, uf_prestador
+, tempo_de_permanencia
+, concat( ano_mes_evento,'-01') as dt_evento
+, cd_carater_atendimento
+, cd_tipo_internacao
+, cd_regime_internacao
+, cd_motivo_saida
+, cid_1
+, cid_2
+, cid_3
+, cid_4
+, qt_diaria_acompanhante
+, qt_diaria_uti
+, ind_acidente_doenca
+, lg_valor_preestabelecido
+FROM dbo.stg_atendimentos_hospitalares_cons
+
